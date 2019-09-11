@@ -3,3 +3,28 @@
   font-size: 40px;
   font-weight: 900;
 }
+
+.sudoku {
+  display: flex;
+  width: 1000px;
+  flex-wrap: wrap;
+}
+
+.block {
+  flex: 1 0 25%;
+  margin: 5px;
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+
+.tile {
+  flex: 1 0 29%;
+  height: 30px;
+  text-align: center;
+}
+
+input.tile {
+  width: 10px;
+}

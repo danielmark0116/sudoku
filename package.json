@@ -1,5 +1,5 @@
 {
-  "name": "todo-webpack-ex",
+  "name": "sudoku",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,7 +24,8 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "sudoku-umd": "^1.0.1"
   },
   "devDependencies": {
     "babel-loader": "^8.0.6",
