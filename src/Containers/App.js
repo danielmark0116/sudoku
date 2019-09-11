@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <h2 className={style.main}>Custom react boilerplate</h2>
+        <h2 className={style.main}>sudoku</h2>
         <p>test</p>
       </Fragment>
     );
