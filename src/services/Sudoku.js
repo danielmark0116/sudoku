@@ -38,7 +38,7 @@ class Sudoku {
   createBlocks = () => {
     const arrays = [];
     this.sudokuArray.map((item, i) => {
-      if ([0, 3, 6, 27, 30, 33, 36, 57, 60].includes(i)) {
+      if ([0, 3, 6, 27, 30, 33, 54, 57, 60].includes(i)) {
         const block = this.createBlock(this.sudokuArray, i);
         arrays.push(block);
       }

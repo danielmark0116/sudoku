@@ -1,21 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { hot } from 'react-hot-loader';
 
-// SUDOKU LIB
+// SUDOKU
 import sudoku from 'sudoku-umd';
-
-// SUDOKU CLASS
 import Sudoku from '../services/Sudoku';
 
-// STYLES
-import style from '../styles/main.scss';
+// CONTAINERS
+import Board from './Board';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       sudoku: null,
-      sudokuObject: null,
+      sudokuData: null,
       showSolved: false,
       sudokuPrev: null
     };
@@ -25,7 +23,7 @@ class App extends Component {
     const sud = sudoku.generate('easy');
     this.setState({
       sudoku: sud,
-      sudokuObject: new Sudoku(sud)
+      sudokuData: new Sudoku(sud)
     });
   };
 
@@ -38,7 +36,7 @@ class App extends Component {
         if (this.state.showSolved) {
           this.setState({
             sudokuPrev: this.state.sudoku,
-            sudoku: this.state.sudokuObject.solvedSudoku
+            sudoku: this.state.sudokuData.solvedSudoku
           });
         } else {
           this.setState({
@@ -51,7 +49,7 @@ class App extends Component {
 
   check = () => {
     const { sudoku } = this.state;
-    const solved = this.state.sudokuObject.solvedSudoku;
+    const solved = this.state.sudokuData.solvedSudoku;
 
     if (sudoku === solved && !this.state.showSolved) {
       console.log('solved');
@@ -89,68 +87,52 @@ class App extends Component {
     }
   };
 
+  save = () => {
+    const { sudokuData, sudoku, showSolved } = this.state;
+
+    !showSolved && sudokuData.save(sudoku);
+  };
+
+  load = () => {
+    const { playerSudokuState, initialSudoku } = this.state.sudokuData.load();
+
+    this.setState({
+      sudoku: playerSudokuState,
+      sudokuData: new Sudoku(initialSudoku)
+    });
+  };
+
   showEmptyIndexes = () => {
-    console.log(this.state.sudokuObject.emptyIndexes);
+    console.log(this.state.sudokuData.emptyIndexes);
   };
 
   printState = () => {
     console.log(this.state.sudoku);
-  };
-
-  save = () => {
-    this.state.sudokuObject.save(this.state.sudoku);
-  };
-
-  load = () => {
-    const { playerSudokuState, initialSudoku } = this.state.sudokuObject.load();
-    this.setState({
-      sudoku: playerSudokuState,
-      sudokuObject: new Sudoku(initialSudoku)
-    });
+    console.log(this.state.sudokuData.generatedBlocks);
   };
 
   render() {
+    const { sudoku, sudokuData } = this.state;
+
     if (this.state.sudoku === null)
       return <button onClick={this.generate}>sdfh</button>;
+
     return (
       <Fragment>
-        <h2>sudoku</h2>
-        <div className={style.sudoku}>
-          {this.state.sudoku !== null &&
-            this.state.sudokuObject.generatedBlocks.map((x, i) => (
-              <div className={style.block} key={i}>
-                {x.map((y, i) =>
-                  this.state.sudokuObject.emptyIndexes.includes(y.i) ? (
-                    <input
-                      key={i}
-                      nthplace={y.i}
-                      className={style.tile}
-                      value={
-                        this.state.sudoku.split('')[y.i] === '.'
-                          ? ''
-                          : this.state.sudoku.split('')[y.i]
-                      }
-                      autoComplete="off"
-                      onChange={e => {
-                        this.handleChange(e, y.i);
-                      }}
-                    />
-                  ) : (
-                    <p key={i} className={style.tile} nthplace={y.i}>
-                      {y.value}
-                    </p>
-                  )
-                )}
-              </div>
-            ))}
-        </div>
-        <button onClick={this.solve}>solve</button>
-        <button onClick={this.generate}>generate</button>
-        <button onClick={this.check}>check</button>
-        <button onClick={this.showEmptyIndexes}>show empty indexes</button>
-        <button onClick={this.printState}>print state</button>
-        <button onClick={this.save}>save</button>
-        <button onClick={this.load}>load</button>
+        {sudoku !== null && (
+          <Board
+            onChange={this.handleChange}
+            sudoku={sudoku}
+            sudokuData={sudokuData}
+            solve={this.solve}
+            generate={this.generate}
+            check={this.check}
+            showEmptyIndexes={this.showEmptyIndexes}
+            printState={this.printState}
+            save={this.save}
+            load={this.load}
+          />
+        )}
       </Fragment>
     );
   }
