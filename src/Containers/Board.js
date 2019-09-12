@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Block from '../Components/Block';
 import Menu from './Menu';
@@ -7,6 +8,20 @@ import Menu from './Menu';
 import style from '../styles/main.scss';
 
 class Board extends Component {
+  static propTypes = {
+    onChange: PropTypes.func,
+    sudoku: PropTypes.string,
+    sudokuData: PropTypes.object,
+    solve: PropTypes.func,
+    generate: PropTypes.func,
+    check: PropTypes.func,
+    showEmptyIndexes: PropTypes.func,
+    printState: PropTypes.func,
+    save: PropTypes.func,
+    load: PropTypes.func,
+    difficulty: PropTypes.string
+  };
+
   render() {
     const {
       sudoku,
@@ -18,12 +33,13 @@ class Board extends Component {
       showEmptyIndexes,
       printState,
       save,
-      load
+      load,
+      difficulty
     } = this.props;
 
     return (
       <Fragment>
-        <h2>BOARD</h2>
+        <h2>BOARD {difficulty} </h2>
         <div className={style.sudoku}>
           {sudokuData.generatedBlocks.map((block, index) => (
             <Block
@@ -36,7 +52,15 @@ class Board extends Component {
             />
           ))}
         </div>
-        <Menu solve={solve} generate={generate} check={check} showEmptyIndexes={showEmptyIndexes} printState={printState} save={save} load={load} />
+        <Menu
+          solve={solve}
+          generate={generate}
+          check={check}
+          showEmptyIndexes={showEmptyIndexes}
+          printState={printState}
+          save={save}
+          load={load}
+        />
       </Fragment>
     );
   }

@@ -16,15 +16,25 @@ class App extends Component {
       sudoku: null,
       sudokuData: null,
       showSolved: false,
-      sudokuPrev: null
+      sudokuPrev: null,
+      difficulty: null
     };
   }
 
   generate = () => {
-    const sud = sudoku.generate('easy');
+    const { difficulty } = this.state;
+
+    const sud = sudoku.generate(difficulty);
+
     this.setState({
       sudoku: sud,
       sudokuData: new Sudoku(sud)
+    });
+  };
+
+  setDifficulty = difficultyAsString => {
+    this.setState({
+      difficulty: difficultyAsString
     });
   };
 
@@ -119,10 +129,17 @@ class App extends Component {
   };
 
   render() {
-    const { sudoku, sudokuData } = this.state;
+    const { sudoku, sudokuData, difficulty } = this.state;
 
     if (sudoku === null)
-      return <MainScreen load={this.load} generate={this.generate} />;
+      return (
+        <MainScreen
+          setDifficulty={this.setDifficulty}
+          difficulty={difficulty}
+          load={this.load}
+          generate={this.generate}
+        />
+      );
 
     return (
       <Fragment>
@@ -138,6 +155,7 @@ class App extends Component {
             printState={this.printState}
             save={this.save}
             load={this.load}
+            difficulty={difficulty}
           />
         )}
       </Fragment>
