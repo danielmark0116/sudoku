@@ -73,10 +73,10 @@ class App extends Component {
     }
   };
 
-  handleChange = (e, index) => {
+  handleChange = (value, index) => {
     const { showSolved, sudoku } = this.state;
 
-    if (!showSolved && e.target.value === '') {
+    if (!showSolved && value === '') {
       const oldSud = this.state.sudoku.split('');
       oldSud[index] = '.';
 
@@ -84,7 +84,7 @@ class App extends Component {
         sudoku: oldSud.join('')
       });
     }
-    let input = parseInt(e.target.value);
+    let input = parseInt(value);
     if (!showSolved && typeof input === 'number' && input > 0 && input < 10) {
       input = input.toString();
       const oldSud = sudoku.split('');

@@ -1,0 +1,50 @@
+.popup {
+  background: $white;
+  position: absolute;
+  top: -$tile-size * 2.5 - 20px;
+  width: $tile-size * 2.5;
+  height: $tile-size * 2.5;
+  padding: 10px;
+  z-index: 10;
+  @include round-border-light;
+  @include shadow;
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    flex: 1 0 26%;
+    z-index: 10;
+    background: $white;
+    border: none;
+    margin: 1%;
+    font-size: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: $blue;
+    @include round-border-very-light;
+    @include fade;
+
+    &:hover {
+      @include shadow-light;
+      cursor: pointer;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  &:before {
+    position: absolute;
+    z-index: 8;
+    content: '';
+    background: $white;
+    width: 20px;
+    height: 20px;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: rotate(45deg);
+  }
+}

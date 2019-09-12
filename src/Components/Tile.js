@@ -14,7 +14,15 @@ class Tile extends Component {
   };
 
   render() {
-    const { tile, index, sudokuData, sudoku, onChange } = this.props;
+    const {
+      tile,
+      index,
+      sudokuData,
+      sudoku,
+      onChange,
+      blockPopup,
+      shouldBlockPopups
+    } = this.props;
 
     return (
       <Fragment>
@@ -25,6 +33,8 @@ class Tile extends Component {
             tile={tile}
             sudoku={sudoku}
             onChange={onChange}
+            blockPopup={blockPopup}
+            shouldBlockPopups={shouldBlockPopups}
           />
         ) : (
           <Value key={index} index={index} tile={tile} />

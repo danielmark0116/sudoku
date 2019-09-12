@@ -1,0 +1,15 @@
+$round-border: 40px;
+$tile-border: 10px;
+$round-border-light: 15px;
+
+@mixin round-border {
+  border-radius: $round-border;
+}
+
+@mixin round-border-light {
+  border-radius: $round-border-light;
+}
+
+@mixin round-border-very-light {
+  border-radius: $tile-border / 2;
+}

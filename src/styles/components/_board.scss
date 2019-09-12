@@ -1,0 +1,12 @@
+.sudokuBoard {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  width: $board-width;
+  height: $board-height;
+  flex-wrap: wrap;
+  background: $white;
+  padding: 20px;
+  @include round-border;
+  @include shadow;
+}

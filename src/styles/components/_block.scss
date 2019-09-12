@@ -1,0 +1,21 @@
+@import '../variables';
+
+.block {
+  flex: 1 0 $block-size;
+  margin: 5px;
+  padding: 0 5px;
+  display: flex;
+  flex-wrap: wrap;
+  background: $green;
+  justify-content: center;
+  align-content: center;
+  @include round-border-light;
+  @include shadow-light;
+
+  .tile {
+    flex: 1 0 $tile-size;
+    height: $tile-size;
+    text-align: center;
+    align-items: center;
+  }
+}

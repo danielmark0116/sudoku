@@ -14,7 +14,15 @@ class Block extends Component {
   };
 
   render() {
-    const { block, index, onChange, sudokuData, sudoku } = this.props;
+    const {
+      block,
+      index,
+      onChange,
+      sudokuData,
+      sudoku,
+      blockPopup,
+      shouldBlockPopups
+    } = this.props;
 
     return (
       <Fragment>
@@ -27,6 +35,8 @@ class Block extends Component {
               sudoku={sudoku}
               onChange={onChange}
               key={i}
+              blockPopup={blockPopup}
+              shouldBlockPopups={shouldBlockPopups}
             />
           ))}
         </div>

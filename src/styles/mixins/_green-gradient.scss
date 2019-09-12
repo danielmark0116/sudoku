@@ -1,0 +1,10 @@
+@mixin green-gradient {
+  background-image: linear-gradient(
+    to left top,
+    #96cb2f,
+    #9ed239,
+    #a5d843,
+    #addf4c,
+    #b5e655
+  );
+}

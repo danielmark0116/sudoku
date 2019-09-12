@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Block from '../Components/Block';
 import Menu from './Menu';
+import Header from '../Components/Header';
 
 // STYLES
 import style from '../styles/main.scss';
@@ -22,6 +23,23 @@ class Board extends Component {
     difficulty: PropTypes.string
   };
 
+  constructor() {
+    super();
+    this.state = {
+      shouldBlockPopups: false
+    };
+  }
+
+  blockPopup = bool => {
+    this.setState({
+      shouldBlockPopups: bool
+    });
+  };
+
+  onKeyPressed = () => {
+    // console.log('key');
+  };
+
   render() {
     const {
       sudoku,
@@ -37,30 +55,36 @@ class Board extends Component {
       difficulty
     } = this.props;
 
+    const { shouldBlockPopups } = this.state;
+
     return (
       <Fragment>
-        <h2>BOARD {difficulty} </h2>
-        <div className={style.sudoku}>
-          {sudokuData.generatedBlocks.map((block, index) => (
-            <Block
-              block={block}
-              index={index}
-              onChange={onChange}
-              key={index}
-              sudokuData={sudokuData}
-              sudoku={sudoku}
-            />
-          ))}
+        <div className={style.container}>
+          <Header difficulty={difficulty} />
+          <div className={style.sudokuBoard} onKeyDown={this.onKeyPressed}>
+            {sudokuData.generatedBlocks.map((block, index) => (
+              <Block
+                block={block}
+                index={index}
+                onChange={onChange}
+                key={index}
+                sudokuData={sudokuData}
+                sudoku={sudoku}
+                blockPopup={this.blockPopup}
+                shouldBlockPopups={shouldBlockPopups}
+              />
+            ))}
+          </div>
+          <Menu
+            solve={solve}
+            generate={generate}
+            check={check}
+            showEmptyIndexes={showEmptyIndexes}
+            printState={printState}
+            save={save}
+            load={load}
+          />
         </div>
-        <Menu
-          solve={solve}
-          generate={generate}
-          check={check}
-          showEmptyIndexes={showEmptyIndexes}
-          printState={printState}
-          save={save}
-          load={load}
-        />
       </Fragment>
     );
   }

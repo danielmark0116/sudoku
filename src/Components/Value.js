@@ -14,9 +14,13 @@ class Value extends Component {
 
     return (
       <Fragment>
-        <p key={index} className={style.tile} nthplace={tile.i}>
+        <div
+          key={index}
+          className={`${style.tile} ${style.tile_box}`}
+          nthplace={tile.i}
+        >
           {tile.value}
-        </p>
+        </div>
       </Fragment>
     );
   }
