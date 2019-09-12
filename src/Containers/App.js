@@ -7,6 +7,7 @@ import Sudoku from '../services/Sudoku';
 
 // CONTAINERS
 import Board from './Board';
+import MainScreen from './MainScreen';
 
 class App extends Component {
   constructor() {
@@ -94,12 +95,18 @@ class App extends Component {
   };
 
   load = () => {
-    const { playerSudokuState, initialSudoku } = this.state.sudokuData.load();
+    const { showSolved, sudokuData } = this.state;
 
-    this.setState({
-      sudoku: playerSudokuState,
-      sudokuData: new Sudoku(initialSudoku)
-    });
+    if (sudokuData.loadPossible) {
+      const { playerSudokuState, initialSudoku } = sudokuData.load();
+
+      if (!showSolved) {
+        this.setState({
+          sudoku: playerSudokuState,
+          sudokuData: new Sudoku(initialSudoku)
+        });
+      }
+    }
   };
 
   showEmptyIndexes = () => {
@@ -114,8 +121,8 @@ class App extends Component {
   render() {
     const { sudoku, sudokuData } = this.state;
 
-    if (this.state.sudoku === null)
-      return <button onClick={this.generate}>sdfh</button>;
+    if (sudoku === null)
+      return <MainScreen load={this.load} generate={this.generate} />;
 
     return (
       <Fragment>

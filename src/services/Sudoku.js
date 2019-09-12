@@ -7,6 +7,17 @@ class Sudoku {
     this.solvedSudoku = sudoku.solve(sudokuString);
     this.generatedBlocks = this.createBlocks();
     this.emptyIndexes = this.emptyIndexes();
+    this.loadPossible = this.checkLoad();
+  }
+
+  checkLoad() {
+    const initialSudoku = localStorage.getItem('initialSudoku');
+    const playerSudokuState = localStorage.getItem('playerSudokuState');
+    if (initialSudoku !== null && playerSudokuState !== null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   save = playerState => {
@@ -17,7 +28,7 @@ class Sudoku {
   load = () => {
     const initialSudoku = localStorage.getItem('initialSudoku');
     const playerSudokuState = localStorage.getItem('playerSudokuState');
-    if (initialSudoku !== null && playerSudokuState !== null) {
+    if (this.loadPossible) {
       return {
         initialSudoku,
         playerSudokuState
