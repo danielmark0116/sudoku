@@ -14,6 +14,7 @@ class MainScreen extends Component {
 
   render() {
     const { generate, load, setDifficulty, difficulty } = this.props;
+    // const isLoadPossible = isLoadPossible();
 
     return (
       <Fragment>

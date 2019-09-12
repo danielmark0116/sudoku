@@ -20,18 +20,22 @@ class Sudoku {
     }
   }
 
-  save = playerState => {
+  save = (playerState, sudokuDifficulty) => {
     localStorage.setItem('initialSudoku', this.sudokuString);
     localStorage.setItem('playerSudokuState', playerState);
+    localStorage.setItem('sudokuDifficulty', sudokuDifficulty);
   };
 
   load = () => {
     const initialSudoku = localStorage.getItem('initialSudoku');
     const playerSudokuState = localStorage.getItem('playerSudokuState');
+    const sudokuDifficulty = localStorage.getItem('sudokuDifficulty');
+
     if (this.loadPossible) {
       return {
         initialSudoku,
-        playerSudokuState
+        playerSudokuState,
+        sudokuDifficulty
       };
     }
   };

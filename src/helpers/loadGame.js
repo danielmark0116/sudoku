@@ -3,13 +3,9 @@ module.exports = function() {
   const playerSudokuState = localStorage.getItem('playerSudokuState');
   const sudokuDifficulty = localStorage.getItem('sudokuDifficulty');
 
-  if (
-    initialSudoku !== null &&
-    playerSudokuState !== null &&
-    sudokuDifficulty !== null
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  return {
+    initialSudoku,
+    playerSudokuState,
+    sudokuDifficulty
+  };
 };

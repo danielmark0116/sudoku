@@ -4,6 +4,8 @@ import { hot } from 'react-hot-loader';
 // SUDOKU
 import sudoku from 'sudoku-umd';
 import Sudoku from '../services/Sudoku';
+import isLoadPossible from '../helpers/isLoad';
+import loadGameData from '../helpers/loadGame';
 
 // CONTAINERS
 import Board from './Board';
@@ -39,19 +41,21 @@ class App extends Component {
   };
 
   solve = () => {
+    const { showSolved, sudoku, sudokuData, sudokuPrev } = this.state;
+
     this.setState(
       {
-        showSolved: !this.state.showSolved
+        showSolved: !showSolved
       },
       () => {
         if (this.state.showSolved) {
           this.setState({
-            sudokuPrev: this.state.sudoku,
-            sudoku: this.state.sudokuData.solvedSudoku
+            sudokuPrev: sudoku,
+            sudoku: sudokuData.solvedSudoku
           });
         } else {
           this.setState({
-            sudoku: this.state.sudokuPrev
+            sudoku: sudokuPrev
           });
         }
       }
@@ -59,10 +63,10 @@ class App extends Component {
   };
 
   check = () => {
-    const { sudoku } = this.state;
+    const { sudoku, showSolved } = this.state;
     const solved = this.state.sudokuData.solvedSudoku;
 
-    if (sudoku === solved && !this.state.showSolved) {
+    if (sudoku === solved && !showSolved) {
       console.log('solved');
     } else {
       console.log('not solved');
@@ -70,23 +74,22 @@ class App extends Component {
   };
 
   handleChange = (e, index) => {
-    if (!this.state.showSolved && e.target.value === '') {
+    const { showSolved, sudoku } = this.state;
+
+    if (!showSolved && e.target.value === '') {
       const oldSud = this.state.sudoku.split('');
       oldSud[index] = '.';
+
       this.setState({
         sudoku: oldSud.join('')
       });
     }
     let input = parseInt(e.target.value);
-    if (
-      !this.state.showSolved &&
-      typeof input === 'number' &&
-      input > 0 &&
-      input < 10
-    ) {
+    if (!showSolved && typeof input === 'number' && input > 0 && input < 10) {
       input = input.toString();
-      const oldSud = this.state.sudoku.split('');
+      const oldSud = sudoku.split('');
       oldSud[index] = input;
+
       this.setState(
         {
           sudoku: oldSud.join('')
@@ -99,21 +102,26 @@ class App extends Component {
   };
 
   save = () => {
-    const { sudokuData, sudoku, showSolved } = this.state;
+    const { sudokuData, sudoku, showSolved, difficulty } = this.state;
 
-    !showSolved && sudokuData.save(sudoku);
+    !showSolved && difficulty !== null && sudokuData.save(sudoku, difficulty);
   };
 
   load = () => {
-    const { showSolved, sudokuData } = this.state;
+    const { showSolved } = this.state;
 
-    if (sudokuData.loadPossible) {
-      const { playerSudokuState, initialSudoku } = sudokuData.load();
+    if (isLoadPossible()) {
+      const {
+        playerSudokuState,
+        initialSudoku,
+        sudokuDifficulty
+      } = loadGameData();
 
       if (!showSolved) {
         this.setState({
           sudoku: playerSudokuState,
-          sudokuData: new Sudoku(initialSudoku)
+          sudokuData: new Sudoku(initialSudoku),
+          difficulty: sudokuDifficulty
         });
       }
     }
