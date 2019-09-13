@@ -21,15 +21,12 @@ class Popup extends Component {
 
     return (
       <Fragment>
-        <div className={`${style.popup}`}>
+        <div className={`${style.popup} popup`}>
           {btnValues.map(value => (
             <button
               key={value}
               onClick={() => {
                 updateTile(value);
-              }}
-              onKeyDown={() => {
-                console.log('kjsdf');
               }}
             >
               {value}

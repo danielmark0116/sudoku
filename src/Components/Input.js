@@ -21,7 +21,22 @@ class Input extends Component {
     };
   }
 
-  triggerPopup = e => {
+  componentWillReceiveProps() {
+    const { showPopup } = this.state;
+    const { shouldBlockPopups } = this.props;
+
+    if (showPopup && shouldBlockPopups) {
+      this.closePopup();
+    }
+  }
+
+  closePopup = () => {
+    this.setState({
+      showPopup: false
+    });
+  };
+
+  triggerPopup = () => {
     const { showPopup } = this.state;
 
     this.setState({
@@ -30,13 +45,15 @@ class Input extends Component {
   };
 
   updateTile = value => {
+    const { blockPopup, onChange } = this.props;
+
     this.triggerPopup();
-    this.props.blockPopup(false);
-    this.props.onChange(value, this.props.tile.i);
+    blockPopup(false);
+    onChange(value, this.props.tile.i);
   };
 
   render() {
-    const { index, tile, sudoku, blockPopup, shouldBlockPopups } = this.props;
+    const { index, tile, sudoku, blockPopup } = this.props;
     const { showPopup } = this.state;
     const possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -59,13 +76,12 @@ class Input extends Component {
         }}
         tabIndex="-1"
         onClick={() => {
-          if (!shouldBlockPopups || showPopup) {
+          if (showPopup) {
             this.triggerPopup();
-            if (showPopup) {
-              blockPopup(false);
-            } else {
-              blockPopup(true);
-            }
+            blockPopup(false);
+          } else {
+            this.triggerPopup();
+            blockPopup(true);
           }
         }}
       >

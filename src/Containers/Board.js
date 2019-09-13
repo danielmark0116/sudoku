@@ -36,10 +36,6 @@ class Board extends Component {
     });
   };
 
-  onKeyPressed = () => {
-    // console.log('key');
-  };
-
   render() {
     const {
       sudoku,

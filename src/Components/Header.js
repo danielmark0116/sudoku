@@ -18,7 +18,7 @@ export default function Header(props) {
   return (
     <div>
       <img src="../../assets/LOGO.svg" alt="" style={style} />
-      <p style={p}>{props.difficulty} </p>
+      <p style={p}>Difficulty level: {props.difficulty.toUpperCase()} </p>
     </div>
   );
 }
