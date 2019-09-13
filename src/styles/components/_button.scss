@@ -1,0 +1,25 @@
+.custom_btn {
+  background: $white;
+  padding: 15px 30px;
+  margin: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  font-weight: $font-bold;
+  font-size: 14px;
+  color: $dark;
+  @include round-border;
+  @include shadow;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.small {
+    padding: 10px 25px;
+    font-size: 10px;
+  }
+}
