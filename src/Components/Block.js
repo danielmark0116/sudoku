@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import style from '../styles/main.scss';
 import Tile from './Tile';
 
+// Animations
+import { animateBlock, bringToBack } from '../animation/block';
+
 class Block extends Component {
   static propTypes = {
     block: PropTypes.array,
@@ -11,6 +14,21 @@ class Block extends Component {
     onChange: PropTypes.func,
     sudokuData: PropTypes.object,
     sudoku: PropTypes.string
+  };
+
+  constructor() {
+    super();
+    this.nodeRef = React.createRef();
+  }
+
+  animateOnHover = bool => {
+    const node = this.nodeRef.current;
+    animateBlock(node, bool);
+  };
+
+  tilesToBack = () => {
+    const tiles = document.querySelectorAll('.bringToBack');
+    bringToBack(tiles);
   };
 
   render() {
@@ -26,7 +44,19 @@ class Block extends Component {
 
     return (
       <Fragment>
-        <div className={style.block} key={index}>
+        <div
+          className={`${style.block} bringToBack`}
+          key={index}
+          style={{ zIndex: 1 }}
+          ref={this.nodeRef}
+          onMouseLeave={() => {
+            this.animateOnHover(false);
+          }}
+          onMouseEnter={() => {
+            this.tilesToBack();
+            this.animateOnHover(true);
+          }}
+        >
           {block.map((tile, i) => (
             <Tile
               tile={tile}

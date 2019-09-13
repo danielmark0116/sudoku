@@ -2,6 +2,7 @@
   font-size: 38px;
   color: $dark-green;
   text-shadow: 2px 2px 0px $green;
+  @include fade-long;
 
   &.active {
     @include green-gradient;

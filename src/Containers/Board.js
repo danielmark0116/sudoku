@@ -5,6 +5,9 @@ import Block from '../Components/Block';
 import Menu from './Menu';
 import Header from '../Components/Header';
 
+// animations
+import { animateBoard } from '../animation/board';
+
 // STYLES
 import style from '../styles/main.scss';
 
@@ -28,12 +31,19 @@ class Board extends Component {
     this.state = {
       shouldBlockPopups: false
     };
+    this.nodeRef = React.createRef();
   }
 
   blockPopup = bool => {
     this.setState({
       shouldBlockPopups: bool
     });
+  };
+
+  handleMouseMove = e => {
+    const node = this.nodeRef.current;
+
+    animateBoard(node, e);
   };
 
   render() {
@@ -57,7 +67,14 @@ class Board extends Component {
       <Fragment>
         <div className={style.container}>
           <Header difficulty={difficulty} />
-          <div className={style.sudokuBoard} onKeyDown={this.onKeyPressed}>
+          <div
+            ref={this.nodeRef}
+            onMouseMove={e => {
+              this.handleMouseMove(e);
+            }}
+            className={style.sudokuBoard}
+            onKeyDown={this.onKeyPressed}
+          >
             {sudokuData.generatedBlocks.map((block, index) => (
               <Block
                 block={block}

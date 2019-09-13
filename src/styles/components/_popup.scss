@@ -5,7 +5,7 @@
   width: $tile-size * 2.5;
   height: $tile-size * 2.5;
   padding: 10px;
-  z-index: 10;
+  z-index: 101 !important;
   @include round-border-light;
   @include shadow;
   display: flex;

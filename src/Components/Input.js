@@ -60,9 +60,9 @@ class Input extends Component {
     return (
       <div
         key={index}
-        className={`${style.tile} ${style.tile_box} ${style.tile_box_input} ${
-          showPopup ? style.active : ''
-        }`}
+        className={`${style.noselect} ${style.tile} ${style.tile_box} ${
+          style.tile_box_input
+        } ${showPopup ? style.active : ''}`}
         nthplace={tile.i}
         onKeyDown={e => {
           if (showPopup) {
