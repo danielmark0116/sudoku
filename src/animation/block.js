@@ -1,14 +1,8 @@
-import {
-  TweenMax,
-  TimelineLite,
-  Power2,
-  Elastic,
-  CSSPlugin,
-  Bounce
-} from 'gsap/TweenMax';
+import { TweenMax } from 'gsap/TweenMax';
 
 export const animateBlock = (node, bool) => {
   const scale = { scale: bool ? 1.05 : 1 };
+
   TweenMax.set(node, { zIndex: bool ? 10 : 2 });
   TweenMax.to(node, 0.4, {
     ...scale,

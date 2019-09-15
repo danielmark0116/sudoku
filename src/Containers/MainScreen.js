@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import isLoadPossible from '../helpers/isLoad';
 import DifficultyBox from './DifficultyBox';
 import Header from '../Components/Header';
+import CustomButton from '../Components/Btn';
+import GameText from '../Components/GameText';
+import Centered from '../Components/Centered';
 
 import style from '../styles/main.scss';
 
@@ -42,50 +45,35 @@ class MainScreen extends Component {
             difficulty={difficulty}
             setDifficulty={setDifficulty}
           />
-          <div
-            style={{ marginTop: '40px' }}
-            className={`${style.d_flex} ${style.justify_content_center}`}
-          >
-            <button
-              ref={this.startBtnNode}
-              className={`${style.custom_btn} ${style.large} ${style.small} ${
-                style.off
-              } ${difficulty === null ? style.disabled : null}`}
-              onClick={() => {
-                difficulty === null ? console.log('choose diff') : generate();
-              }}
-            >
-              start game
-            </button>
+          <div ref={this.startBtnNode}>
+            <Centered>
+              <CustomButton
+                action={difficulty !== null ? generate : null}
+                large={true}
+                disabled={difficulty ? false : true}
+                margin={true}
+              >
+                start game
+              </CustomButton>
+            </Centered>
           </div>
 
           {isLoadPossible() ? (
             <div ref={this.loadBtnNode}>
-              <p
-                style={{ marginTop: '40px' }}
-                className={`${style.text_center} ${style.text_white}`}
-              >
-                Seems like you have a game going...
-              </p>
-              <div
-                className={`${style.d_flex} ${style.justify_content_center}`}
-              >
-                <button
-                  className={`${style.custom_btn} ${style.success}`}
-                  onClick={load}
-                >
+              <GameText margin={true}>
+                It seems like you have a game going...
+              </GameText>
+              <Centered>
+                <CustomButton action={load} success={true}>
                   continue
-                </button>
-              </div>
+                </CustomButton>
+              </Centered>
             </div>
           ) : (
             <div ref={this.loadBtnNode}>
-              <p
-                style={{ marginTop: '40px' }}
-                className={`${style.text_center} ${style.text_white}`}
-              >
+              <GameText margin={true}>
                 You don't have any games going at the moment.
-              </p>
+              </GameText>
             </div>
           )}
         </div>

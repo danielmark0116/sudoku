@@ -1,0 +1,19 @@
+.header {
+  .logo {
+    margin: 40px auto 0;
+    display: block;
+  }
+
+  .logoLarge {
+    margin: 40px auto 0;
+    display: block;
+    width: 500px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 12px;
+    color: $white;
+    margin-bottom: 40px;
+  }
+}

@@ -8,7 +8,6 @@ export const animateBoard = (node, e) => {
   const boxHeightDelta = mouseInsideElPosition - boxMiddle;
   const screenMiddleX = window.innerWidth / 2;
   const transformPercentage = 0.003;
-
   const yTranslationValue = (screenMiddleX - e.clientX) * transformPercentage;
   const xTranslationValue = boxHeightDelta * transformPercentage;
 
@@ -48,5 +47,4 @@ export const boardNotSolved = node => {
       ease: Power1.easeOut
     });
   }
-  // TweenMax.from(node, animationTime, { scale: 0.99, ease: Bounce.easeOut });
 };

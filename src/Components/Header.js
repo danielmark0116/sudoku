@@ -1,27 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-// import Logo from '../../assets/LOGO.png';
+import style from '../styles/main.scss';
 
 import { revealFadeIn } from '../animation/reveal';
-
-const style = {
-  margin: '40px auto 0',
-  display: 'block'
-};
-
-const styleLarge = {
-  margin: '40px auto 0',
-  display: 'block',
-  width: '500px'
-};
-
-const p = {
-  textAlign: 'center',
-  fontSize: '12px',
-  color: 'white',
-  marginBottom: '40px'
-};
 
 class Header extends Component {
   static propTypes = {
@@ -51,14 +33,14 @@ class Header extends Component {
 
     return (
       <Fragment>
-        <div ref={this.node}>
+        <div ref={this.node} className={style.header}>
           <img
             src="../../assets/LOGO.svg"
-            alt=""
-            style={isLarge ? styleLarge : style}
+            alt="Sudoku Logo"
+            className={isLarge ? style.logoLarge : style.logo}
           />
           {showDifficulty && (
-            <p style={p}>Difficulty level: {difficulty.toUpperCase()} </p>
+            <p>Difficulty level: {difficulty.toUpperCase()} </p>
           )}
         </div>
       </Fragment>

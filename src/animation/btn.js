@@ -1,4 +1,4 @@
-import { TweenMax, TimelineLite, Power1, Bounce } from 'gsap/TweenMax';
+import { TweenMax, TimelineLite, Power1 } from 'gsap/TweenMax';
 
 const t1 = new TimelineLite();
 

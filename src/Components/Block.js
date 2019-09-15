@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import style from '../styles/main.scss';
 import Tile from './Tile';
 
-// Animations
 import { animateBlock, bringToBack } from '../animation/block';
 
 class Block extends Component {

@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import style from '../styles/main.scss';
-
 import Header from '../Components/Header';
+import CustomButton from '../Components/Btn';
+import Centered from '../Components/Centered';
+import GameText from '../Components/GameText';
 
 import { revealFadeIn } from '../animation/reveal';
 import { btnReveal } from '../animation/btn';
@@ -34,21 +35,19 @@ class SuccessScreen extends Component {
     return (
       <Fragment>
         <Header></Header>
-        <p
-          ref={this.textNode}
-          className={`${style.text_center} ${style.text_white}`}
-        >
-          Congratulations! You have solved the sudoku on {difficulty} difficulty
-          level!
-        </p>
-        <div className={`${style.d_flex} ${style.justify_content_center}`}>
-          <button
-            ref={this.btnNode}
-            onClick={resetGame}
-            className={`${style.custom_btn} ${style.success}`}
-          >
-            play again
-          </button>
+        <div ref={this.textNode}>
+          <GameText>
+            Congratulations! You have solved the sudoku on {difficulty}
+            difficulty level!
+          </GameText>
+        </div>
+
+        <div ref={this.btnNode}>
+          <Centered>
+            <CustomButton action={resetGame} success={true}>
+              play again
+            </CustomButton>
+          </Centered>
         </div>
       </Fragment>
     );

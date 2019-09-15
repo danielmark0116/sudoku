@@ -44,6 +44,7 @@ body {
 @import 'mixins/green-gradient';
 
 // COMPONENTS
+@import 'components/header.scss';
 @import 'components/board.scss';
 @import 'components/block.scss';
 @import 'components/value.scss';

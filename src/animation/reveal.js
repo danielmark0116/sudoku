@@ -1,8 +1,4 @@
-import { TweenMax, TimelineLite, Power1, Power2, Bounce } from 'gsap/TweenMax';
-
-// const t1 = new TimelineLite();
-
-// const easing = Back.easeOut.config(4);
+import { TweenMax, Power2 } from 'gsap/TweenMax';
 
 export const revealAnimation = (node, delayInSeconds) => {
   TweenMax.from(node, 0.5, {

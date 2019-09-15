@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { hot } from 'react-hot-loader';
 
-// SUDOKU
 import sudoku from 'sudoku-umd';
 import Sudoku from '../services/Sudoku';
 import isLoadPossible from '../helpers/isLoad';
 import loadGameData from '../helpers/loadGame';
 
-// CONTAINERS
 import Board from './Board';
 import MainScreen from './MainScreen';
 import SuccessScreen from './SuccessScreen';
