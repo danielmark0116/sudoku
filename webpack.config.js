@@ -33,7 +33,7 @@ module.exports = env => {
     entry: './src/index.js',
     optimization: optimizationObject,
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'docs'),
       filename: 'app.bundle.js'
     },
     devServer: { port: 3000 },
