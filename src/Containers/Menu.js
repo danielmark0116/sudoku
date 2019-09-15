@@ -21,11 +21,11 @@ class Menu extends Component {
     const {
       solve,
       resetGame,
-      check,
       showEmptyIndexes,
       printState,
       save,
-      load
+      load,
+      checkIfBoardSolved
     } = this.props;
 
     return (
@@ -62,7 +62,7 @@ class Menu extends Component {
         </button>
         <button
           className={`${style.small} ${style.custom_btn}`}
-          onClick={check}
+          onClick={checkIfBoardSolved}
           onMouseDown={e => {
             this.animateOnPush(e.target);
           }}
@@ -75,7 +75,7 @@ class Menu extends Component {
         >
           check
         </button>
-        <button
+        {/* <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={showEmptyIndexes}
           onMouseDown={e => {
@@ -89,8 +89,8 @@ class Menu extends Component {
           }}
         >
           show empty indexes
-        </button>
-        <button
+        </button> */}
+        {/* <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={printState}
           onMouseDown={e => {
@@ -104,7 +104,7 @@ class Menu extends Component {
           }}
         >
           print state
-        </button>
+        </button> */}
         <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={save}
@@ -120,7 +120,7 @@ class Menu extends Component {
         >
           save
         </button>
-        <button
+        {/* <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={load}
           onMouseDown={e => {
@@ -134,7 +134,7 @@ class Menu extends Component {
           }}
         >
           load
-        </button>
+        </button> */}
       </div>
     );
   }

@@ -10,6 +10,7 @@ import loadGameData from '../helpers/loadGame';
 // CONTAINERS
 import Board from './Board';
 import MainScreen from './MainScreen';
+import SuccessScreen from './SuccessScreen';
 
 class App extends Component {
   constructor() {
@@ -19,7 +20,8 @@ class App extends Component {
       sudokuData: null,
       showSolved: false,
       sudokuPrev: null,
-      difficulty: null
+      difficulty: null,
+      isSolved: false
     };
   }
 
@@ -30,14 +32,16 @@ class App extends Component {
 
     this.setState({
       sudoku: sud,
-      sudokuData: new Sudoku(sud)
+      sudokuData: new Sudoku(sud),
+      isSolved: false
     });
   };
 
   resetGame = () => {
     this.setState({
       sudoku: null,
-      difficulty: null
+      difficulty: null,
+      isSolved: false
     });
   };
 
@@ -75,7 +79,13 @@ class App extends Component {
 
     if (sudoku === solved && !showSolved) {
       console.log('solved');
+      this.setState({
+        isSolved: true
+      });
     } else {
+      this.setState({
+        isSolved: false
+      });
       console.log('not solved');
     }
   };
@@ -144,7 +154,12 @@ class App extends Component {
   };
 
   render() {
-    const { sudoku, sudokuData, difficulty } = this.state;
+    const { sudoku, sudokuData, difficulty, isSolved } = this.state;
+
+    if (isSolved)
+      return (
+        <SuccessScreen difficulty={difficulty} resetGame={this.resetGame} />
+      );
 
     if (sudoku === null)
       return (
@@ -171,6 +186,7 @@ class App extends Component {
             save={this.save}
             load={this.load}
             difficulty={difficulty}
+            isSolved={isSolved}
           />
         )}
       </Fragment>

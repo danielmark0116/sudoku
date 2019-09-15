@@ -28,7 +28,7 @@ class MainScreen extends Component {
     const loadBtnNode = this.loadBtnNode.current;
 
     revealAnimation(startBtnNode, 1);
-    isLoadPossible() && revealAnimation(loadBtnNode, 1.3);
+    revealAnimation(loadBtnNode, 1.3);
   }
 
   render() {
@@ -59,7 +59,7 @@ class MainScreen extends Component {
             </button>
           </div>
 
-          {isLoadPossible() && (
+          {isLoadPossible() ? (
             <div ref={this.loadBtnNode}>
               <p
                 style={{ marginTop: '40px' }}
@@ -77,6 +77,15 @@ class MainScreen extends Component {
                   continue
                 </button>
               </div>
+            </div>
+          ) : (
+            <div ref={this.loadBtnNode}>
+              <p
+                style={{ marginTop: '40px' }}
+                className={`${style.text_center} ${style.text_white}`}
+              >
+                You don't have any games going at the moment.
+              </p>
             </div>
           )}
         </div>

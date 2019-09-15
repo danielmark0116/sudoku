@@ -6,7 +6,7 @@ import Menu from './Menu';
 import Header from '../Components/Header';
 
 // animations
-import { animateBoard } from '../animation/board';
+import { animateBoard, boardReveal, boardNotSolved } from '../animation/board';
 
 // STYLES
 import style from '../styles/main.scss';
@@ -23,7 +23,8 @@ class Board extends Component {
     printState: PropTypes.func,
     save: PropTypes.func,
     load: PropTypes.func,
-    difficulty: PropTypes.string
+    difficulty: PropTypes.string,
+    isSolved: PropTypes.bool
   };
 
   constructor() {
@@ -34,10 +35,22 @@ class Board extends Component {
     this.nodeRef = React.createRef();
   }
 
+  componentDidMount() {
+    const node = this.nodeRef.current;
+    boardReveal(node);
+  }
+
   blockPopup = bool => {
     this.setState({
       shouldBlockPopups: bool
     });
+  };
+
+  checkIfBoardSolved = () => {
+    const node = this.nodeRef.current;
+    const { isSolved } = this.props;
+
+    isSolved ? console.log('success') : boardNotSolved(node);
   };
 
   handleMouseMove = e => {
@@ -52,7 +65,6 @@ class Board extends Component {
       sudokuData,
       onChange,
       solve,
-      check,
       showEmptyIndexes,
       printState,
       save,
@@ -90,12 +102,12 @@ class Board extends Component {
           </div>
           <Menu
             solve={solve}
-            check={check}
             showEmptyIndexes={showEmptyIndexes}
             printState={printState}
             save={save}
             load={load}
             resetGame={resetGame}
+            checkIfBoardSolved={this.checkIfBoardSolved}
           />
         </div>
       </Fragment>

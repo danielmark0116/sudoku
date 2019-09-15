@@ -1,4 +1,4 @@
-import { TweenMax, Power1 } from 'gsap/TweenMax';
+import { TweenMax, Power1, Back, TimelineLite } from 'gsap/TweenMax';
 
 export const animateBoard = (node, e) => {
   const boxHeight = node.offsetHeight;
@@ -22,4 +22,31 @@ export const animateBoard = (node, e) => {
     rotationX: xTranslationValue,
     ease: Power1.easeOut
   });
+};
+
+export const boardReveal = node => {
+  TweenMax.from(node, 0.5, {
+    scale: 0,
+    opacity: 0,
+    rotation: -10,
+    ease: Back.easeOut.config(1)
+  });
+};
+
+export const boardNotSolved = node => {
+  const t1 = new TimelineLite();
+  const animationTime = 1;
+
+  if (!t1._active) {
+    t1.to(node, animationTime / 2, {
+      scale: 0.99,
+      borderColor: '#ff2f2f',
+      ease: Power1.easeOut
+    }).to(node, animationTime, {
+      scale: 1,
+      borderColor: 'transparent',
+      ease: Power1.easeOut
+    });
+  }
+  // TweenMax.from(node, animationTime, { scale: 0.99, ease: Bounce.easeOut });
 };
