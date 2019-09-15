@@ -1,12 +1,4 @@
-import {
-  TweenMax,
-  TimelineLite,
-  Power2,
-  Elastic,
-  CSSPlugin,
-  Bounce,
-  Power1
-} from 'gsap/TweenMax';
+import { TweenMax, TimelineLite, Power1 } from 'gsap/TweenMax';
 
 const t1 = new TimelineLite();
 
@@ -14,6 +6,10 @@ const easing = Back.easeOut.config(4);
 
 export const btnPush = node => {
   t1.to(node, 0.2, { scale: 0.9, ease: easing });
+};
+
+export const btnScale = node => {
+  t1.to(node, 0.2, { scale: 1.5, ease: easing });
 };
 
 export const resetBtn = node => {

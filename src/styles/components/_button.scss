@@ -6,7 +6,8 @@
   text-transform: uppercase;
   font-weight: $font-bold;
   font-size: 14px;
-  color: $dark;
+  color: $blue;
+  border: 1px solid transparent;
   @include round-border;
   @include shadow;
 
@@ -19,7 +20,37 @@
   }
 
   &.small {
-    padding: 10px 25px;
+    padding: 10px 35px;
     font-size: 10px;
+  }
+
+  &.large {
+    font-size: 18px;
+    padding: 25px 85px;
+  }
+
+  &.success {
+    background: $green;
+    color: $white;
+    text-shadow: 0 0 1px $grey;
+  }
+
+  &.off {
+    background: $light;
+  }
+
+  &.selected {
+    background: $white;
+    color: $dark-green;
+    border: 1px solid $dark-green;
+    font-size: 12px;
+  }
+
+  &.disabled {
+    background: $grey;
+
+    &:hover {
+      cursor: not-allowed;
+    }
   }
 }

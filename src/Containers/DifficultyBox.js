@@ -3,23 +3,41 @@ import PropTypes from 'prop-types';
 
 import DifficultyBtn from '../Components/DifficultyBtn';
 
+import style from '../styles/main.scss';
+
 class DifficultyBox extends Component {
   static propTypes = {
-    setDifficulty: PropTypes.func
+    setDifficulty: PropTypes.func,
+    difficulty: PropTypes.string
   };
 
   render() {
-    const { setDifficulty } = this.props;
+    const { setDifficulty, difficulty } = this.props;
+
+    console.log(difficulty);
 
     return (
       <Fragment>
-        <h3>difficulty box</h3>
-        <DifficultyBtn setDifficulty={setDifficulty}>easy</DifficultyBtn>
-        <DifficultyBtn setDifficulty={setDifficulty}>medium</DifficultyBtn>
-        <DifficultyBtn setDifficulty={setDifficulty}>hard</DifficultyBtn>
-        <DifficultyBtn setDifficulty={setDifficulty}>very hard</DifficultyBtn>
-        <DifficultyBtn setDifficulty={setDifficulty}>insane</DifficultyBtn>
-        <DifficultyBtn setDifficulty={setDifficulty}>inhuman</DifficultyBtn>
+        <div style={{ marginTop: '20px' }}>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            easy
+          </DifficultyBtn>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            medium
+          </DifficultyBtn>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            hard
+          </DifficultyBtn>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            very hard
+          </DifficultyBtn>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            insane
+          </DifficultyBtn>
+          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
+            inhuman
+          </DifficultyBtn>
+        </div>
       </Fragment>
     );
   }

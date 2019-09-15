@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // import Logo from '../../assets/LOGO.png';
 
@@ -15,10 +16,19 @@ const p = {
 };
 
 export default function Header(props) {
+  const { difficulty, showDifficulty } = props;
+
   return (
     <div>
       <img src="../../assets/LOGO.svg" alt="" style={style} />
-      <p style={p}>Difficulty level: {props.difficulty.toUpperCase()} </p>
+      {showDifficulty && (
+        <p style={p}>Difficulty level: {difficulty.toUpperCase()} </p>
+      )}
     </div>
   );
 }
+
+Header.defaultProps = {
+  difficulty: '',
+  showDifficulty: true
+};
