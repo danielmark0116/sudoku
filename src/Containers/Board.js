@@ -17,8 +17,8 @@ class Board extends Component {
     sudoku: PropTypes.string,
     sudokuData: PropTypes.object,
     solve: PropTypes.func,
-    generate: PropTypes.func,
     check: PropTypes.func,
+    resetGame: PropTypes.func,
     showEmptyIndexes: PropTypes.func,
     printState: PropTypes.func,
     save: PropTypes.func,
@@ -52,13 +52,13 @@ class Board extends Component {
       sudokuData,
       onChange,
       solve,
-      generate,
       check,
       showEmptyIndexes,
       printState,
       save,
       load,
-      difficulty
+      difficulty,
+      resetGame
     } = this.props;
 
     const { shouldBlockPopups } = this.state;
@@ -90,12 +90,12 @@ class Board extends Component {
           </div>
           <Menu
             solve={solve}
-            generate={generate}
             check={check}
             showEmptyIndexes={showEmptyIndexes}
             printState={printState}
             save={save}
             load={load}
+            resetGame={resetGame}
           />
         </div>
       </Fragment>

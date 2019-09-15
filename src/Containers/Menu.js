@@ -20,7 +20,7 @@ class Menu extends Component {
   render() {
     const {
       solve,
-      generate,
+      resetGame,
       check,
       showEmptyIndexes,
       printState,
@@ -29,7 +29,7 @@ class Menu extends Component {
     } = this.props;
 
     return (
-      <Fragment>
+      <div className={`${style.d_flex} ${style.justify_content_center}`}>
         <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={solve}
@@ -47,7 +47,7 @@ class Menu extends Component {
         </button>
         <button
           className={`${style.small} ${style.custom_btn}`}
-          onClick={generate}
+          onClick={resetGame}
           onMouseDown={e => {
             this.animateOnPush(e.target);
           }}
@@ -58,7 +58,7 @@ class Menu extends Component {
             this.cancelBtnClick(e.target);
           }}
         >
-          generate
+          reset game
         </button>
         <button
           className={`${style.small} ${style.custom_btn}`}
@@ -135,7 +135,7 @@ class Menu extends Component {
         >
           load
         </button>
-      </Fragment>
+      </div>
     );
   }
 }

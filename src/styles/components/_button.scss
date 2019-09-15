@@ -48,6 +48,7 @@
 
   &.disabled {
     background: $grey;
+    color: rgba($dark, 0.5);
 
     &:hover {
       cursor: not-allowed;

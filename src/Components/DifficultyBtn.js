@@ -3,18 +3,26 @@ import PropTypes from 'prop-types';
 
 import style from '../styles/main.scss';
 
-import { btnScale, resetBtn } from '../animation/btn';
+import { btnScale, resetBtn, btnReveal } from '../animation/btn';
 
 class DifficultyBtn extends Component {
   static propTypes = {
     children: PropTypes.string,
     setDifficulty: PropTypes.func,
-    difficulty: PropTypes.string
+    difficulty: PropTypes.string,
+    index: PropTypes.number
   };
 
   constructor() {
     super();
     this.nodeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const { index } = this.props;
+    const node = this.nodeRef.current;
+
+    btnReveal(node, index);
   }
 
   componentDidUpdate() {

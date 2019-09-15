@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 // import Logo from '../../assets/LOGO.png';
 
+import { revealFadeIn } from '../animation/reveal';
+
 const style = {
   margin: '40px auto 0',
   display: 'block'
+};
+
+const styleLarge = {
+  margin: '40px auto 0',
+  display: 'block',
+  width: '500px'
 };
 
 const p = {
@@ -15,20 +23,47 @@ const p = {
   marginBottom: '40px'
 };
 
-export default function Header(props) {
-  const { difficulty, showDifficulty } = props;
+class Header extends Component {
+  static propTypes = {
+    difficulty: PropTypes.string,
+    showDifficulty: PropTypes.bool,
+    isLarge: PropTypes.bool
+  };
 
-  return (
-    <div>
-      <img src="../../assets/LOGO.svg" alt="" style={style} />
-      {showDifficulty && (
-        <p style={p}>Difficulty level: {difficulty.toUpperCase()} </p>
-      )}
-    </div>
-  );
+  static defaultProps = {
+    difficulty: '',
+    showDifficulty: true,
+    isLarge: false
+  };
+
+  constructor() {
+    super();
+    this.node = React.createRef();
+  }
+
+  componentDidMount() {
+    const node = this.node.current;
+    revealFadeIn(node, 0);
+  }
+
+  render() {
+    const { difficulty, showDifficulty, isLarge } = this.props;
+
+    return (
+      <Fragment>
+        <div ref={this.node}>
+          <img
+            src="../../assets/LOGO.svg"
+            alt=""
+            style={isLarge ? styleLarge : style}
+          />
+          {showDifficulty && (
+            <p style={p}>Difficulty level: {difficulty.toUpperCase()} </p>
+          )}
+        </div>
+      </Fragment>
+    );
+  }
 }
 
-Header.defaultProps = {
-  difficulty: '',
-  showDifficulty: true
-};
+export default Header;

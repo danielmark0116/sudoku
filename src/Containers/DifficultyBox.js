@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import DifficultyBtn from '../Components/DifficultyBtn';
 
+import { revealFadeIn } from '../animation/reveal';
+
 import style from '../styles/main.scss';
 
 class DifficultyBox extends Component {
@@ -11,32 +13,43 @@ class DifficultyBox extends Component {
     difficulty: PropTypes.string
   };
 
+  constructor() {
+    super();
+    this.node = React.createRef();
+  }
+
+  componentDidMount() {
+    const node = this.node.current;
+    revealFadeIn(node, 0.4);
+  }
+
   render() {
     const { setDifficulty, difficulty } = this.props;
-
-    console.log(difficulty);
+    const difficultyLevels = [
+      'easy',
+      'medium',
+      'hard',
+      'very hard',
+      'insane',
+      'inhuman'
+    ];
 
     return (
       <Fragment>
-        <div style={{ marginTop: '20px' }}>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            easy
-          </DifficultyBtn>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            medium
-          </DifficultyBtn>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            hard
-          </DifficultyBtn>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            very hard
-          </DifficultyBtn>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            insane
-          </DifficultyBtn>
-          <DifficultyBtn difficulty={difficulty} setDifficulty={setDifficulty}>
-            inhuman
-          </DifficultyBtn>
+        <div className={style.difficulty_box}>
+          <p ref={this.node} className={style.difficulty_box_text}>
+            Choose difficulty level
+          </p>
+          {difficultyLevels.map((lvl, i) => (
+            <DifficultyBtn
+              key={i}
+              index={i}
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+            >
+              {lvl}
+            </DifficultyBtn>
+          ))}
         </div>
       </Fragment>
     );

@@ -50,6 +50,9 @@ class Sudoku {
     return indexes;
   };
 
+  // in progress
+  getActiveColumn = () => {};
+
   createBlocks = () => {
     const arrays = [];
     this.sudokuArray.map((item, i) => {

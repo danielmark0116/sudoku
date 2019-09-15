@@ -7,6 +7,8 @@ import Header from '../Components/Header';
 
 import style from '../styles/main.scss';
 
+import { revealAnimation } from '../animation/reveal';
+
 class MainScreen extends Component {
   static propTypes = {
     setDifficulty: PropTypes.func,
@@ -15,12 +17,26 @@ class MainScreen extends Component {
     generate: PropTypes.func
   };
 
+  constructor() {
+    super();
+    this.startBtnNode = React.createRef();
+    this.loadBtnNode = React.createRef();
+  }
+
+  componentDidMount() {
+    const startBtnNode = this.startBtnNode.current;
+    const loadBtnNode = this.loadBtnNode.current;
+
+    revealAnimation(startBtnNode, 1);
+    isLoadPossible() && revealAnimation(loadBtnNode, 1.3);
+  }
+
   render() {
     const { generate, load, setDifficulty, difficulty } = this.props;
 
     return (
       <Fragment>
-        <Header showDifficulty={false} />
+        <Header isLarge={true} showDifficulty={false} />
         <div className={style.container}>
           <DifficultyBox
             difficulty={difficulty}
@@ -31,6 +47,7 @@ class MainScreen extends Component {
             className={`${style.d_flex} ${style.justify_content_center}`}
           >
             <button
+              ref={this.startBtnNode}
               className={`${style.custom_btn} ${style.large} ${style.small} ${
                 style.off
               } ${difficulty === null ? style.disabled : null}`}
@@ -41,19 +58,27 @@ class MainScreen extends Component {
               start game
             </button>
           </div>
-          <div
-            style={{ marginTop: '40px' }}
-            className={`${style.d_flex} ${style.justify_content_center}`}
-          >
-            {isLoadPossible() && (
-              <button
-                className={`${style.custom_btn} ${style.success}`}
-                onClick={load}
+
+          {isLoadPossible() && (
+            <div ref={this.loadBtnNode}>
+              <p
+                style={{ marginTop: '40px' }}
+                className={`${style.text_center} ${style.text_white}`}
               >
-                load the game
-              </button>
-            )}
-          </div>
+                Seems like you have a game going...
+              </p>
+              <div
+                className={`${style.d_flex} ${style.justify_content_center}`}
+              >
+                <button
+                  className={`${style.custom_btn} ${style.success}`}
+                  onClick={load}
+                >
+                  continue
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </Fragment>
     );

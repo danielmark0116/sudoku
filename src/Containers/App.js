@@ -34,6 +34,13 @@ class App extends Component {
     });
   };
 
+  resetGame = () => {
+    this.setState({
+      sudoku: null,
+      difficulty: null
+    });
+  };
+
   setDifficulty = difficultyAsString => {
     this.setState({
       difficulty: difficultyAsString
@@ -157,7 +164,7 @@ class App extends Component {
             sudoku={sudoku}
             sudokuData={sudokuData}
             solve={this.solve}
-            generate={this.generate}
+            resetGame={this.resetGame}
             check={this.check}
             showEmptyIndexes={this.showEmptyIndexes}
             printState={this.printState}
