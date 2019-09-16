@@ -1,30 +1,20 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeJsPlugin = require('optimize-js-plugin');
 
 module.exports = env => {
   const envValue = env || 'production';
 
   let optimizationObject = {
-    minimize: false
+    minimize: envValue === 'development' ? false : true
   };
 
   let pluginsArray = [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: './src/index.html',
       filename: 'index.html',
       inject: 'body'
     })
   ];
-
-  if (envValue === 'production') {
-    pluginsArray = [
-      ...pluginsArray,
-      new OptimizeJsPlugin({
-        sourceMap: false
-      })
-    ];
-  }
 
   const babelPlugins = ['@babel/plugin-proposal-class-properties'];
 
@@ -33,12 +23,16 @@ module.exports = env => {
     entry: './src/index.js',
     optimization: optimizationObject,
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'docs'),
       filename: 'app.bundle.js'
     },
     devServer: { port: 3000 },
     module: {
       rules: [
+        {
+          test: /\.svg$/,
+          loader: 'svg-inline-loader'
+        },
         {
           test: /\.js$/,
           loader: 'babel-loader',

@@ -5,6 +5,9 @@ import style from '../styles/main.scss';
 
 import { revealFadeIn } from '../animation/reveal';
 
+import Logo from '../../assets/LOGO.svg';
+import SVG from 'react-inlinesvg';
+
 class Header extends Component {
   static propTypes = {
     difficulty: PropTypes.string,
@@ -34,11 +37,10 @@ class Header extends Component {
     return (
       <Fragment>
         <div ref={this.node} className={style.header}>
-          <img
-            src="../../assets/LOGO.svg"
-            alt="Sudoku Logo"
+          <SVG
             className={isLarge ? style.logoLarge : style.logo}
-          />
+            src={Logo}
+          ></SVG>
           {showDifficulty && (
             <p>Difficulty level: {difficulty.toUpperCase()} </p>
           )}
