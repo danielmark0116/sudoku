@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import style from '../styles/main.scss';
+
 import DifficultyBtn from '../Components/DifficultyBtn';
 
 import { revealFadeIn } from '../animation/reveal';
-
-import style from '../styles/main.scss';
 
 class DifficultyBox extends Component {
   static propTypes = {

@@ -79,7 +79,6 @@ class App extends Component {
     const solved = this.state.sudokuData.solvedSudoku;
 
     if (sudoku === solved && !showSolved) {
-      console.log('solved');
       this.setState({
         isSolved: true
       });
@@ -87,7 +86,6 @@ class App extends Component {
       this.setState({
         isSolved: false
       });
-      console.log('not solved');
     }
   };
 
@@ -147,15 +145,6 @@ class App extends Component {
     }
   };
 
-  showEmptyIndexes = () => {
-    console.log(this.state.sudokuData.emptyIndexes);
-  };
-
-  printState = () => {
-    console.log(this.state.sudoku);
-    console.log(this.state.sudokuData.generatedBlocks);
-  };
-
   render() {
     const {
       sudoku,
@@ -195,8 +184,6 @@ class App extends Component {
             solve={this.solve}
             resetGame={this.resetGame}
             check={this.check}
-            showEmptyIndexes={this.showEmptyIndexes}
-            printState={this.printState}
             save={this.save}
             load={this.load}
             difficulty={difficulty}

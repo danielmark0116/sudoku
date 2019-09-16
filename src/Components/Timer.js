@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import GameText from './GameText';
-
 import style from '../styles/main.scss';
 
 class Timer extends Component {

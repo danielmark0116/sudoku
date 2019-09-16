@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import style from '../styles/main.scss';
 
-import { revealFadeIn } from '../animation/reveal';
-
 import Logo from '../../assets/LOGO.svg';
 import SVG from 'react-inlinesvg';
+
+import { revealFadeIn } from '../animation/reveal';
 
 class Header extends Component {
   static propTypes = {

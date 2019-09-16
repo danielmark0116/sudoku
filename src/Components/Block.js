@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import style from '../styles/main.scss';
+
 import Tile from './Tile';
 
 import { animateBlock, bringToBack } from '../animation/block';

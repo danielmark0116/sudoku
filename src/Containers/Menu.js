@@ -1,10 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import style from '../styles/main.scss';
 
 import { btnPush, resetBtn, btnUp } from '../animation/btn';
 
 class Menu extends Component {
+  static propTypes = {
+    solve: PropTypes.func,
+    save: PropTypes.func,
+    checkIfBoardSolved: PropTypes.func,
+    resetGame: PropTypes.func
+  };
+
   animateOnPush = node => {
     btnPush(node);
   };
@@ -18,15 +26,7 @@ class Menu extends Component {
   };
 
   render() {
-    const {
-      solve,
-      resetGame,
-      showEmptyIndexes,
-      printState,
-      save,
-      load,
-      checkIfBoardSolved
-    } = this.props;
+    const { solve, resetGame, save, checkIfBoardSolved } = this.props;
 
     return (
       <div className={`${style.d_flex} ${style.justify_content_center}`}>
@@ -75,36 +75,6 @@ class Menu extends Component {
         >
           check
         </button>
-        {/* <button
-          className={`${style.small} ${style.custom_btn}`}
-          onClick={showEmptyIndexes}
-          onMouseDown={e => {
-            this.animateOnPush(e.target);
-          }}
-          onMouseUp={e => {
-            this.animateOnUp(e.target);
-          }}
-          onMouseLeave={e => {
-            this.cancelBtnClick(e.target);
-          }}
-        >
-          show empty indexes
-        </button> */}
-        {/* <button
-          className={`${style.small} ${style.custom_btn}`}
-          onClick={printState}
-          onMouseDown={e => {
-            this.animateOnPush(e.target);
-          }}
-          onMouseUp={e => {
-            this.animateOnUp(e.target);
-          }}
-          onMouseLeave={e => {
-            this.cancelBtnClick(e.target);
-          }}
-        >
-          print state
-        </button> */}
         <button
           className={`${style.small} ${style.custom_btn}`}
           onClick={save}
@@ -120,21 +90,6 @@ class Menu extends Component {
         >
           save
         </button>
-        {/* <button
-          className={`${style.small} ${style.custom_btn}`}
-          onClick={load}
-          onMouseDown={e => {
-            this.animateOnPush(e.target);
-          }}
-          onMouseUp={e => {
-            this.animateOnUp(e.target);
-          }}
-          onMouseLeave={e => {
-            this.cancelBtnClick(e.target);
-          }}
-        >
-          load
-        </button> */}
       </div>
     );
   }

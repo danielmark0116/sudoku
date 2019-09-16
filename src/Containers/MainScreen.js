@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import style from '../styles/main.scss';
+
 import isLoadPossible from '../helpers/isLoad';
 import DifficultyBox from './DifficultyBox';
 import Header from '../Components/Header';
 import CustomButton from '../Components/Btn';
 import GameText from '../Components/GameText';
 import Centered from '../Components/Centered';
-
-import style from '../styles/main.scss';
 
 import { revealAnimation } from '../animation/reveal';
 

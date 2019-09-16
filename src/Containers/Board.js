@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import style from '../styles/main.scss';
+
 import Block from '../Components/Block';
 import Menu from './Menu';
 import Header from '../Components/Header';
 import Timer from '../Components/Timer';
 
-// animations
 import { animateBoard, boardReveal, boardNotSolved } from '../animation/board';
-
-// STYLES
-import style from '../styles/main.scss';
 
 class Board extends Component {
   static propTypes = {
@@ -20,8 +18,6 @@ class Board extends Component {
     solve: PropTypes.func,
     check: PropTypes.func,
     resetGame: PropTypes.func,
-    showEmptyIndexes: PropTypes.func,
-    printState: PropTypes.func,
     save: PropTypes.func,
     load: PropTypes.func,
     difficulty: PropTypes.string,
@@ -66,8 +62,6 @@ class Board extends Component {
       sudokuData,
       onChange,
       solve,
-      showEmptyIndexes,
-      printState,
       save,
       load,
       difficulty,
@@ -105,8 +99,6 @@ class Board extends Component {
           </div>
           <Menu
             solve={solve}
-            showEmptyIndexes={showEmptyIndexes}
-            printState={printState}
             save={save}
             load={load}
             resetGame={resetGame}
