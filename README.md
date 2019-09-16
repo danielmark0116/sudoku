@@ -6,6 +6,10 @@ A Sudoku game made with React and Sudoku-UMD package
 
 You can play the game here: [CLICK](https://danielmark0116.github.io/sudoku/)
 
+## HOW TO PLAY
+
+Simply select the desired difficulty level and input the numbers in empty fields (from 1 to 9). You can do it by first selecting the empty field and then either pressing the number on your keyboard or using the popup window
+
 ---
 
 If you want to fork the repo and work on it yourself a little, just clone in to your disk, open and run
