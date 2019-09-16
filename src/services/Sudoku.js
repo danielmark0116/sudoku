@@ -8,6 +8,8 @@ class Sudoku {
     this.generatedBlocks = this.createBlocks();
     this.emptyIndexes = this.emptyIndexes();
     this.loadPossible = this.checkLoad();
+    this.timeSeconds = 0;
+    this.timeMinutes = 0;
   }
 
   checkLoad() {
@@ -20,22 +22,34 @@ class Sudoku {
     }
   }
 
+  updateTime = (minutes, seconds) => {
+    this.timeMinutes = minutes;
+    this.timeSeconds = seconds;
+  };
+
   save = (playerState, sudokuDifficulty) => {
     localStorage.setItem('initialSudoku', this.sudokuString);
     localStorage.setItem('playerSudokuState', playerState);
     localStorage.setItem('sudokuDifficulty', sudokuDifficulty);
+    const sudokuPlayedTime = {
+      seconds: this.timeSeconds,
+      minutes: this.timeMinutes
+    };
+    localStorage.setItem('sudokuPlayedTime', JSON.stringify(sudokuPlayedTime));
   };
 
   load = () => {
     const initialSudoku = localStorage.getItem('initialSudoku');
     const playerSudokuState = localStorage.getItem('playerSudokuState');
     const sudokuDifficulty = localStorage.getItem('sudokuDifficulty');
+    const sudokuPlayedTime = localStorage.getItem('sudokuPlayedTime');
 
     if (this.loadPossible) {
       return {
         initialSudoku,
         playerSudokuState,
-        sudokuDifficulty
+        sudokuDifficulty,
+        sudokuPlayedTime
       };
     }
   };

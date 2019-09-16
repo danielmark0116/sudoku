@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Block from '../Components/Block';
 import Menu from './Menu';
 import Header from '../Components/Header';
+import Timer from '../Components/Timer';
 
 // animations
 import { animateBoard, boardReveal, boardNotSolved } from '../animation/board';
@@ -70,7 +71,8 @@ class Board extends Component {
       save,
       load,
       difficulty,
-      resetGame
+      resetGame,
+      sudokuPlayedTime
     } = this.props;
 
     const { shouldBlockPopups } = this.state;
@@ -79,6 +81,7 @@ class Board extends Component {
       <Fragment>
         <div className={style.container}>
           <Header difficulty={difficulty} />
+          <Timer sudokuData={sudokuData} sudokuPlayedTime={sudokuPlayedTime} />
           <div
             ref={this.nodeRef}
             onMouseMove={e => {

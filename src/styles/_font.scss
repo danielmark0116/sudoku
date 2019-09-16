@@ -7,6 +7,10 @@ $font-bold: 700;
 
 .text_white {
   color: $white;
+
+  span {
+    font-size: 24px;
+  }
 }
 
 .text_center {

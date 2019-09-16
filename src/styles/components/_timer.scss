@@ -1,0 +1,19 @@
+.timer_container {
+  display: flex;
+  justify-content: center;
+  width: $board-width;
+  margin: 0 auto 20px;
+  font-size: 24px;
+  text-align: center;
+  color: $white;
+  text-shadow: 1px 1px 0 $dark-blue;
+
+  .timer_block {
+    display: inline-flex;
+
+    span {
+      width: 14px;
+      text-align: center;
+    }
+  }
+}

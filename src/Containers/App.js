@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 import sudoku from 'sudoku-umd';
 import Sudoku from '../services/Sudoku';
 import isLoadPossible from '../helpers/isLoad';
-import loadGameData from '../helpers/loadGame';
+import loadGame from '../helpers/loadGame';
 
 import Board from './Board';
 import MainScreen from './MainScreen';
@@ -19,7 +19,8 @@ class App extends Component {
       showSolved: false,
       sudokuPrev: null,
       difficulty: null,
-      isSolved: false
+      isSolved: false,
+      sudokuPlayedTime: ''
     };
   }
 
@@ -31,7 +32,8 @@ class App extends Component {
     this.setState({
       sudoku: sud,
       sudokuData: new Sudoku(sud),
-      isSolved: false
+      isSolved: false,
+      sudokuPlayedTime: ''
     });
   };
 
@@ -39,7 +41,8 @@ class App extends Component {
     this.setState({
       sudoku: null,
       difficulty: null,
-      isSolved: false
+      isSolved: false,
+      sudokuPlayedTime: ''
     });
   };
 
@@ -129,14 +132,16 @@ class App extends Component {
       const {
         playerSudokuState,
         initialSudoku,
-        sudokuDifficulty
-      } = loadGameData();
+        sudokuDifficulty,
+        sudokuPlayedTime
+      } = loadGame();
 
       if (!showSolved) {
         this.setState({
           sudoku: playerSudokuState,
           sudokuData: new Sudoku(initialSudoku),
-          difficulty: sudokuDifficulty
+          difficulty: sudokuDifficulty,
+          sudokuPlayedTime: sudokuPlayedTime
         });
       }
     }
@@ -152,11 +157,21 @@ class App extends Component {
   };
 
   render() {
-    const { sudoku, sudokuData, difficulty, isSolved } = this.state;
+    const {
+      sudoku,
+      sudokuData,
+      difficulty,
+      isSolved,
+      sudokuPlayedTime
+    } = this.state;
 
     if (isSolved)
       return (
-        <SuccessScreen difficulty={difficulty} resetGame={this.resetGame} />
+        <SuccessScreen
+          sudokuData={sudokuData}
+          difficulty={difficulty}
+          resetGame={this.resetGame}
+        />
       );
 
     if (sudoku === null)
@@ -173,6 +188,7 @@ class App extends Component {
       <Fragment>
         {sudoku !== null && (
           <Board
+            sudokuPlayedTime={sudokuPlayedTime}
             onChange={this.handleChange}
             sudoku={sudoku}
             sudokuData={sudokuData}
