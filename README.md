@@ -1,6 +1,6 @@
 # SUDOKU
 
-A Sudoku game made with React and Sudoku-UMD package
+A Sudoku game made with React and Sudoku-UMD package!
 
 ## PLAY IT
 
