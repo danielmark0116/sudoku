@@ -1,4 +1,4 @@
-# SUDOKU 1
+# SUDOKU
 
 A Sudoku game made with React and Sudoku-UMD package!
 
